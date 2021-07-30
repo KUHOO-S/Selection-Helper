@@ -1,5 +1,8 @@
 # Selection-Helper
 
+![banner (1)](https://user-images.githubusercontent.com/56020411/127701851-2abcf11a-48f4-4b71-8100-4d7688940831.png)
+
+
 ## Table of Contents
 * [Introduction](#introduction)
 * [Installation](#installation)
@@ -11,6 +14,10 @@ Slection Helper is a browser plugin that is a one stop reasearch work solution f
 - Options of websites to search from
 - Bookmark like feature to sav all you desirable data for the session
 - No need for a million tabs and windows now :)
+
+
+### Prototype:
+![wireframe](https://user-images.githubusercontent.com/56020411/127701651-96bcaeb3-81f6-4365-a24a-0c7923a7c2cc.png)
 
 
 ### Github Projects :

@@ -36,7 +36,8 @@ Search Tap is a browser plugin that is a one stop reasearch work solution for de
 
 
 ### Github Projects :
-![image](https://user-images.githubusercontent.com/45617530/127694494-a31bbfcf-9e51-45f2-beac-e939b3d0c354.png)
+![image](https://user-images.githubusercontent.com/45617530/127705321-5c5ad67f-c5c3-43d9-bb8d-b3369af7ee70.png)
+
 
 ### Installation
 

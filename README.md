@@ -1,8 +1,46 @@
-# Pre Fellowship Template
+# Selection-Helper
 
-This is a template to help you get started with your projects. Find out more information inside of the Fellow Handbook.
+## Table of Contents
+* [Introduction](#introduction)
+* [Installation](#installation)
+* [Contributors](#contributors)
 
-This template has a `main` and `staging` branch already setup. 
+## Introduction:
+Slection Helper is a browser plugin that is a one stop reasearch work solution for developers and students.
+- Quick search
+- Options of websites to search from
+- Bookmark like feature to sav all you desirable data for the session
+- No need for a million tabs and windows now :)
 
-- Code will only be merged into `main` once your Pod Leader has reviewed your code. At the end of each week, there will be a code freeze. Your Pod Leader will review it before it's merged.
-- During the week, you'll merge code into `staging`. 
+
+### Github Projects :
+![image](https://user-images.githubusercontent.com/45617530/127694494-a31bbfcf-9e51-45f2-beac-e939b3d0c354.png)
+
+## Installation
+
+1. Clone the repo
+```sh
+git clone https://github.com/KUHOO-S/Selection-Helper.git
+```
+2. Enable developer mode in Chrome/Firefox browser and upload the folder
+3. Refresh the entension and use of all tabs
+
+## Contributors
+
+Thanks goes to these wonderful people :
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/KUHOO-S"><img src="https://avatars2.githubusercontent.com/u/45617530?s=460&u=e8f348e1baa81db8b5d7358c959f89b4f8c2f6c8&v=4" width="100px;" alt=""/><br /><sub><b>KUHOO-S</b></sub></a><br /><a href="https://github.com/KUHOO-S/Selection-Helper/commits?author=KUHOO-S" title="Code,Doccumentation">💻 📖</a></td>
+    <td align="center"><a href="https://github.com/oshinsaini"><img src="https://avatars.githubusercontent.com/u/56020411?v=4" width="100px;" alt=""/><br /><sub><b>Osinsaini</b></sub></a><br /><a href="https://github.com/KUHOO-S/Selection-Helper/commits?author=oshinsaini" title="Code,Design">💻 🎨</a></td>
+    <td align="center"><a href="https://github.com/ananya0504"><img src="https://avatars.githubusercontent.com/u/50453232?v=4" width="100px;" alt=""/><br /><sub><b>Ananya0504</b></sub></a><br /><a href="https://github.com/KUHOO-S/Selection-Helper/commits?author=ananya0504" title="Code,Design">💻 🎨</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+

@@ -7,6 +7,14 @@
 
 ## Introduction:
 Slection Helper is a browser plugin that is a one stop reasearch work solution for developers and students.
+- Quick search
+- Options of websites to search from
+- Bookmark like feature to sav all you desirable data for the session
+- No need for a million tabs and windows now :)
+
+
+### Github Projects :
+![image](https://user-images.githubusercontent.com/45617530/127694494-a31bbfcf-9e51-45f2-beac-e939b3d0c354.png)
 
 ## Installation
 
@@ -19,7 +27,7 @@ git clone https://github.com/KUHOO-S/Selection-Helper.git
 
 ## Contributors
 
-Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+Thanks goes to these wonderful people :
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
@@ -35,7 +43,4 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
 <!-- ALL-CONTRIBUTORS-LIST:END -->
-
-This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
-
 

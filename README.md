@@ -31,7 +31,7 @@ Search Tap is a browser plugin that is a one stop reasearch work solution for de
 - A bookmark like feature to save some of your favourite websites which you might use daily or have to log on to on a daily basis for work!
 - No need to open millions of tabs and windows now to search data which you don't know. Just use the SEARCH ALL option and get the search results for the same data on different platforms on just 1 TAB! Isn't that a totally new user experience??
 
-### Prototype:
+### Prototypes:
 ![wireframe](https://user-images.githubusercontent.com/56020411/127701651-96bcaeb3-81f6-4365-a24a-0c7923a7c2cc.png)
 
 

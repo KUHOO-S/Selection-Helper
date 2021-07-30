@@ -4,7 +4,7 @@
 
 ### Inspiration
 
-<img src="bulb.png" align="right" alt="Inspiration" style="margin-left: 10px; border-radius: 10px;" width="120" height="178">
+<img src="bulb.png" align="right" alt="Inspiration" style="margin-left: 10px; border-radius: 10px;" width="210" height="178">
 
 As developers, most of our time goes into searching stuff and finding out out the functions and syntax of a particular tech stack on the web, because let's face it, WE CANNOT REMEMBER THE SYNTAX OF EVERY LANGUAGE WE WORK IN!
 

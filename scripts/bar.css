@@ -1,0 +1,22 @@
+.searchFrame{
+    border:1px solid;
+    border-radius: 15px;
+    position : absolute;
+    z-index : 100;
+    height : 450px;
+    width : 500px;
+        
+}
+.optionBar{
+    height: 50px;
+    min-width: 300px;
+    position:absolute;
+    z-index:100;
+    background: #dbd9d9;
+    padding: 4px;
+    border:1px solid;
+    border-radius: 15px;
+}
+.optionBarImage{
+height: 40px;
+}

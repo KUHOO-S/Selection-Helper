@@ -3,146 +3,162 @@
   <head>
     <meta charset="utf-8">
     <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
-    <title>Honey</title>
+    <title>Select Tap</title>
     <style>
+        @import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css";
+        body {
+          height: 600px; /* popovers have a max height of 600px */
+          width: 400px;
+          padding: 0;
+          margin: 0;
+        }
+        /* body {
+          background:#ddd;
+          font-family:"Raleway";
+        } */
 
-@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css";
+        .switch {
+          position: relative;
+          display: inline-block;
+          width: 60px;
+          height: 34px;
+        }
 
+        .switch input { 
+          opacity: 0;
+          width: 0;
+          height: 0;
+        }
 
-      body {
-        height: 600px; /* popovers have a max height of 600px */
-        width: 400px;
-        padding: 0;
-        margin: 0;
-      }
-/* body {
-  background:#ddd;
-  font-family:"Raleway";
-} */
+        .slider {
+          position: absolute;
+          cursor: pointer;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: #ccc;
+          -webkit-transition: .4s;
+          transition: .4s;
+        }
 
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 34px;
-}
+        .slider:before {
+          position: absolute;
+          content: "";
+          height: 26px;
+          width: 26px;
+          left: 4px;
+          bottom: 4px;
+          background-color: white;
+          -webkit-transition: .4s;
+          transition: .4s;
+        }
 
-.switch input { 
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
+        input:checked + .slider {
+          background-color: #2196F3;
+        }
 
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
+        input:focus + .slider {
+          box-shadow: 0 0 1px #2196F3;
+        }
 
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
+        input:checked + .slider:before {
+          -webkit-transform: translateX(26px);
+          -ms-transform: translateX(26px);
+          transform: translateX(26px);
+        }
 
-input:checked + .slider {
-  background-color: #2196F3;
-}
+        /* Rounded sliders */
+        .slider.round {
+          border-radius: 34px;
+        }
 
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
-}
+        .slider.round:before {
+          border-radius: 50%;
+        }
 
-input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
-}
+        .tabs {
+          position:absolute;
+          top:50%;
+          left:50%;
+          transform:translate(-50%,-50%);
+          width:500px;
+          height:250px;
+          background:#f5f5f5;
+          padding:20px 30px;
+          overflow:hidden;
+          border-radius:50px;
+          box-shadow:5px 10px 5px #ccc;
+        }
+        .tabs .tab-header {
+          height:60px;
+          display:flex;
+          align-items:center;
+        }
+        .tabs .tab-header > div {
+          width:calc(100% / 4);
+          text-align:center;
+          color:#888;
+          font-weight:600;
+          cursor:pointer;
+          font-size:14px;
+          text-transform:uppercase;
+          outline:none;
+        }
+        .tabs .tab-header > div > i {
+          display:block;
+          margin-bottom:5px;
+        }
+        .tabs .tab-header > div.active {
+          color:#00acee;
+        }
+        .tabs .tab-indicator {
+          position:relative;
+          width:calc(100% / 4);
+          height:5px;
+          background:#00acee;
+          left:0px;
+          border-radius:5px;
+          transition:all 500ms ease-in-out;
+        }
+        .tabs .tab-body {
+          position:relative;
+          height:calc(100% - 60px);
+          padding:10px 5px;
+        }
+        .tabs .tab-body > div {
+          position:absolute;
+          top:-200%;
+          opacity:0;
+          transform:scale(0.9);
+          transition:opacity 500ms ease-in-out 0ms,
+            transform 500ms ease-in-out 0ms;
+        }
+        .tabs .tab-body > div.active {
+          top:0px;
+          opacity:1;
+          transform:scale(1);
+        }
+        li {
+          list-style: none;
+          cursor: pointer;
+          margin: 0px;
+          padding: 0px;
+          clear: both;
+          overflow: hidden;
+          /* border: 1px solid white; */
+        }
+        #message {
+          width:170px;
+          margin:5px 0 7px;
+          font:10pt Arial, Helvetica, sans-serif;
+          color:#009966;
+        }
 
-/* Rounded sliders */
-.slider.round {
-  border-radius: 34px;
-}
-
-.slider.round:before {
-  border-radius: 50%;
-}
-
-.tabs {
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  width:500px;
-  height:250px;
-  background:#f5f5f5;
-  padding:20px 30px;
-  overflow:hidden;
-  border-radius:50px;
-  box-shadow:5px 10px 5px #ccc;
-}
-.tabs .tab-header {
-  height:60px;
-  display:flex;
-  align-items:center;
-}
-.tabs .tab-header > div {
-  width:calc(100% / 4);
-  text-align:center;
-  color:#888;
-  font-weight:600;
-  cursor:pointer;
-  font-size:14px;
-  text-transform:uppercase;
-  outline:none;
-}
-.tabs .tab-header > div > i {
-  display:block;
-  margin-bottom:5px;
-}
-.tabs .tab-header > div.active {
-  color:#00acee;
-}
-.tabs .tab-indicator {
-  position:relative;
-  width:calc(100% / 4);
-  height:5px;
-  background:#00acee;
-  left:0px;
-  border-radius:5px;
-  transition:all 500ms ease-in-out;
-}
-.tabs .tab-body {
-  position:relative;
-  height:calc(100% - 60px);
-  padding:10px 5px;
-}
-.tabs .tab-body > div {
-  position:absolute;
-  top:-200%;
-  opacity:0;
-  transform:scale(0.9);
-  transition:opacity 500ms ease-in-out 0ms,
-    transform 500ms ease-in-out 0ms;
-}
-.tabs .tab-body > div.active {
-  top:0px;
-  opacity:1;
-  transform:scale(1);
-}
+        #message.error {color:#DF0000;}
+        
     </style>
+    <script type="text/javascript" src="vendor/jquery-1.7.2_min.js" ></script>
   </head>
   <body>
       
@@ -248,26 +264,44 @@ input:checked + .slider:before {
           <div>
             <h2>Links</h2>
 
-            <h3 style="font-size: medium; padding:10px; color: rgb(93, 93, 100); font-size: 20px;"><i class="fa fa-bookmark"></i> &nbsp Copy</h3>
+            <ul>
+              
+              <li id="actionCopy">
+                <div class="menu" style="font-size: medium; padding:10px; color: rgb(93, 93, 100); font-size: 20px;">
+                  <i class="fa fa-bookmark"></i>
+                  <span class="text"> &nbsp Copy</span>
+                </div>
+              </li>
+
+              <li id="actionPaste">
+                <div class="menu" style="font-size: medium; padding:10px; color: rgb(93, 93, 100); font-size: 20px;">
+                  <i class="fa fa-clipboard"></i>
+                  <span class="text"> &nbsp Paste</span>
+                </div>
+              </li>
+
+            </ul>
+            
+            <div id="message"></div>
+            <div id="recently-updated" style="font-size: medium; padding:10px; color: rgb(93, 93, 100); font-size: 20px; display:none;"></div>
+
+            <!-- <h3 style="font-size: medium; padding:10px; color: rgb(93, 93, 100); font-size: 20px;"><i class="fa fa-bookmark"></i> &nbsp Copy</h3>
             <h3 style="font-size: medium; padding:10px; color: rgb(93, 93, 100); font-size: 20px;"><i class="fa fa-clipboard"></i> &nbsp Paste</h3>
-                
+                 -->
             <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi minus exercitationem vero, id autem fugit assumenda a molestiae numquam at, quisquam cumque. Labore eligendi perspiciatis quia incidunt quaerat ut ducimus?</p> -->
           </div>
 
           <div>
             <!-- <h2>This is services section</h2> -->
-
             <h3 style="font-size: medium; padding:10px; color: rgb(93, 93, 100); font-size: 20px;"><i class="fa fa-user circle"></i> &nbsp Welcome!</h3>
-          <img src= "banner.png" style="height: 300px; width: 300px;">
+            <img src= "img/banner.png" style="height: 300px; width: 300px;">
         </div>
           
         </div>
       </div>
 
   </body>
-
-  <script src="popbox.js"></script>
-
+  <script src="popup.js"></script>
   <!-- <script src="../h1-popover.js"></script>
   <script src="../h1-honeyscience-main-popover.js"></script> -->
   <!-- <script src="../h1-vendors-main-popover.js"></script> -->

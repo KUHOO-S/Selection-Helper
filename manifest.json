@@ -3,7 +3,7 @@
 	"name": "Select Tap",
 	"version": "1.0.0",
 	"icons": {
-		"48": "logo.png"
+		"48": "img/logo.png"
 	},
 	"description": "Chrome Extension - Context Selector :)",
 	"browser_action": {
@@ -11,8 +11,22 @@
 		"default_popup": "popup.html"
 	},
 	"background": {
-		"page": "background.html"
+		"scripts": [ "vendor/jquery-1.7.2_min.js", "vendor/encoder.js", "background.js" ]
 	},
+	"commands": {
+		"copy": {
+		   "description": "Copy",
+		   "suggested_key": {
+			  "default": "Alt+C"
+		   }
+		},
+		"paste": {
+		   "description": "Paste",
+		   "suggested_key": {
+			  "default": "Alt+V"
+		   }
+		}
+	 },
 	"content_scripts": [
 		{
 			"matches": [
@@ -26,5 +40,6 @@
 			]
 		}
 	],
+	"permissions": [ "tabs", "http://*/*", "https://*/*", "clipboardRead", "clipboardWrite", "notifications" ],
 	"content_security_policy": "script-src 'self' https://ajax.googleapis.com; object-src 'self'"
 }

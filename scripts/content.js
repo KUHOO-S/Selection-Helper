@@ -32,7 +32,7 @@ window.oncontextmenu = function (event) {
         */
        
         //build iframe
-        buildSearchFrame(event);
+        buildSearchFrame(event,selectedText);
         //build optionBar
         buildOptionBar(event);
 
@@ -52,7 +52,7 @@ function clearFrames() {
     }
 }
 
-function buildSearchFrame(event) {
+function buildSearchFrame(event,selectedText) {
     var searchFrame = document.createElement('iframe'); // is a node
     searchFrame.className = "searchFrame"
 

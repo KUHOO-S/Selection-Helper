@@ -3,43 +3,53 @@
 	"name": "Select Tap",
 	"version": "1.0.0",
 	"icons": {
-		"48": "img/logo.png"
+		"48": "assets/images/logo.png"
 	},
 	"description": "Chrome Extension - Context Selector :)",
 	"browser_action": {
 		"default_title": "Select Tap",
-		"default_popup": "popup.html"
+		"default_popup": "popup/popup.html"
 	},
 	"background": {
-		"scripts": [ "vendor/jquery-1.7.2_min.js", "vendor/encoder.js", "background.js" ]
+		"scripts": [
+			"popup/vendor/jquery-1.7.2_min.js",
+			"popup/vendor/encoder.js",
+			"background/background.js"
+		]
 	},
 	"commands": {
 		"copy": {
-		   "description": "Copy",
-		   "suggested_key": {
-			  "default": "Alt+C"
-		   }
+			"description": "Copy",
+			"suggested_key": {
+				"default": "Alt+C"
+			}
 		},
 		"paste": {
-		   "description": "Paste",
-		   "suggested_key": {
-			  "default": "Alt+V"
-		   }
+			"description": "Paste",
+			"suggested_key": {
+				"default": "Alt+V"
+			}
 		}
-	 },
+	},
 	"content_scripts": [
 		{
 			"matches": [
 				"*://*/*"
 			],
 			"js": [
-				"./scripts/content.js"
+				"content/content.js"
 			],
 			"css": [
-				"./scripts/bar.css"
+				"assets/css/bar.css"
 			]
 		}
 	],
-	"permissions": [ "tabs", "http://*/*", "https://*/*", "clipboardRead", "clipboardWrite", "notifications" ],
-	"content_security_policy": "script-src 'self' https://ajax.googleapis.com; object-src 'self'"
+	"permissions": [
+		"tabs",
+		"http://*/*",
+		"https://*/*",
+		"clipboardRead",
+		"clipboardWrite",
+		"notifications"
+	]
 }

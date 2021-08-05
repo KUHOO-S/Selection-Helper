@@ -60,7 +60,7 @@ Action = {
 	copy: function (opt) {
 		// By default, we get all the tabs of the opt.window window
 		var tabQuery = { windowId: opt.window.id };
-
+		console.log("in copy func")
 		// If "Copy tabs from all windows" is checked, deletion of the filter on current window
 		try {
 			if (localStorage["walk_all_windows"] == "true") {
@@ -98,28 +98,6 @@ Action = {
 
 			// Copy the list of URLs to the clipboard
 			Clipboard.write(outputText, extended_mime);
-			console.log(typeof (outputText))
-			var url = "https://api.sendgrid.com/v3/mail/send";
-
-			var xhr = new XMLHttpRequest();
-			xhr.open("POST", url);
-
-			xhr.setRequestHeader("Authorization", "Bearer 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");
-			xhr.setRequestHeader("Content-Type", "application/json");
-
-			xhr.onreadystatechange = function () {
-				if (xhr.readyState === 4) {
-					console.log(xhr.status);
-					console.log(xhr.responseText);
-				}
-			};
-			data = { "personalizations": [{ "to": [{ "email": "vidhika01@gmail.com" }] }], 
-			"from": { "email": "ananyagupta0504@gmail.com" },
-			"subject": "Sending with SendGrid is Fun", 
-			"content": [{ "type": "text/plain", "value": outputText }] 
-			}
-			
-			xhr.send(JSON.stringify(data));
 
 			// Tells the popup the number of copied URLs, for display in the popup
 			chrome.runtime.sendMessage({ type: "copy", copied_url: tabs.length });
@@ -129,6 +107,43 @@ Action = {
 			_gaq.push(['_trackEvent', 'Action', opt.gaEvent.action, opt.gaEvent.label, tabs.length]);
 		});
 	},
+
+	email: function (opt) {
+		// By default, we get all the tabs of the opt.window window
+		var outputText = Clipboard.read();
+		console.log(typeof (outputText))
+		var url = "https://api.sendgrid.com/v3/mail/send";
+
+		var xhr = new XMLHttpRequest();
+		xhr.open("POST", url);
+
+		xhr.setRequestHeader("Authorization", "Bearer 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");
+		xhr.setRequestHeader("Content-Type", "application/json");
+
+		xhr.onreadystatechange = function () {
+			if (xhr.readyState === 4) {
+				console.log(xhr.status);
+				console.log(xhr.responseText);
+				if (xhr.status>=400)
+				chrome.runtime.sendMessage({ type: "email", errorMsg: xhr.responseText });
+			}
+		};
+		data = {
+			"personalizations": [{ "to": [{ "email": "abc@email.com" }] }],
+			"from": { "email": "ananyagupta0504@gmail.com" },
+			"subject": "Sending with SendGrid is Fun",
+			"content": [{ "type": "text/plain", "value": outputText }]
+		}
+
+		xhr.send(JSON.stringify(data));
+
+		// Tells the popup the number of copied URLs, for display in the popup
+		chrome.runtime.sendMessage({ type: "email" });
+
+		
+},
+
+
 
 	/**
 	* Open all URLs from the clipboard in new tabs

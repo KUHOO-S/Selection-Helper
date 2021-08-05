@@ -20,3 +20,12 @@
 .optionBarImage{
 height: 40px;
 }
+.linkwrap{ 
+    
+    border:1px solid;
+    border-radius: 15px;
+    position : absolute;
+    z-index : 200;
+    height : 450px;
+    width : 500px;
+}

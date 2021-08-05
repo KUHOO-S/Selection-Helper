@@ -5,6 +5,7 @@ window.onclick = function (event) {
     clearFrames();
 }
 window.oncontextmenu = function (event) {
+    event.preventDefault();
     clearFrames();
     var selectedText = '';
 
@@ -30,9 +31,9 @@ window.oncontextmenu = function (event) {
         //setzeFrame(selectedText,url,event)
 
         */
-       
+
         //build iframe
-        buildSearchFrame(event,selectedText);
+        buildSearchFrame(event, selectedText);
         //build optionBar
         buildOptionBar(event);
 
@@ -52,15 +53,24 @@ function clearFrames() {
     }
 }
 
-function buildSearchFrame(event,selectedText) {
+function buildSearchFrame(event, selectedText) {
+    var link = document.createElement('a');
+
+    link.href = "https://vtop.vit.ac.in";
+    link.target = "_blank";
+    link.className = "linkwrap";
+    
+    var mydiv= document.createElement('div');
+    mydiv.className="searchFrame";
     var searchFrame = document.createElement('iframe'); // is a node
-    searchFrame.className = "searchFrame"
+    searchFrame.className = "searchFrame";
 
     searchFrame.src = "https://www.google.com/search?q=" + selectedText + "&igu=1";
-    searchFrame.style.left = String(Number(event.pageX) + 125) + 'px';
-    searchFrame.style.top = event.pageY + 'px';
-
-    document.body.append(searchFrame);
+    mydiv.style.left = String(Number(event.pageX) + 125) + 'px';
+    mydiv.style.top = event.pageY + 'px';
+    link.appendChild(searchFrame);
+    mydiv.appendChild(link);
+    document.body.append(mydiv);
 
 }
 

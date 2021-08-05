@@ -109,6 +109,13 @@ Action = {
 	},
 
 	email: function (opt) {
+		if(opt.error)
+		{
+			chrome.runtime.sendMessage({ type: "email", errorMsg: "Please enter email" });
+			return;
+		}
+		else{
+		
 		// By default, we get all the tabs of the opt.window window
 		var outputText = Clipboard.read();
 		console.log(typeof (outputText))
@@ -129,18 +136,18 @@ Action = {
 			}
 		};
 		data = {
-			"personalizations": [{ "to": [{ "email": "abc@email.com" }] }],
+			"personalizations": [{ "to": [{ "email": opt.emailId }] }],
 			"from": { "email": "ananyagupta0504@gmail.com" },
-			"subject": "Sending with SendGrid is Fun",
+			"subject": "Copied Urls from SearchTap",
 			"content": [{ "type": "text/plain", "value": outputText }]
 		}
 
 		xhr.send(JSON.stringify(data));
 
 		// Tells the popup the number of copied URLs, for display in the popup
-		chrome.runtime.sendMessage({ type: "email" });
+		chrome.runtime.sendMessage({ type: "email",emailId :opt.emailId });
 
-		
+	}
 },
 
 

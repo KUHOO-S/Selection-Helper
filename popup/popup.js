@@ -29,7 +29,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 		case "copy":
 			var nombre = (request.copied_url > 1) ? 's' : '';
 			jQuery('#message').removeClass('error').html("<b>" + request.copied_url + "</b> url" + nombre + " successfully !");
-			setTimeout(function () { window.close(); }, 3000); // Closing of the popup a few seconds after displaying the message
+			//setTimeout(function () { window.close(); }, 3000); // Closing of the popup a few seconds after displaying the message
 			break;
 		case "email":
 			if (request.errorMsg) {
@@ -37,9 +37,9 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 				return;
 			}
 			else {
-				jQuery('#message').removeClass('error').html("Email sent successfully copied !");
+				jQuery('#message').removeClass('error').html("Email sent successfully to "+request.emailId);
 			}
-			setTimeout(function () { window.close(); }, 3000); // Closing of the popup a few seconds after displaying the message
+			//setTimeout(function () { window.close(); }, 3000); // Closing of the popup a few seconds after displaying the message
 			break;
 
 		case "paste":
@@ -85,16 +85,30 @@ jQuery(function ($) {
 		bkg.Action.paste({ gaEvent: gaEvent });
 	});
 	$('#actionEmail').on('click', function (e, fromDefaultAction) {
+		console.log($("#email").val())
+		if ($("#email").val()==""){
+			var gaEvent = {
+				action: 'Email',
+				label: (fromDefaultAction === true) ? 'BrowserAction' : 'Popup',
+				actionMeta: bkg.AnalyticsHelper.getActionMeta("email")
+			};
+			// We get the current window
+			chrome.windows.getCurrent(function (win) {
+				bkg.Action.email({ window: win, gaEvent: gaEvent,error:"Please enter email" });
+			});	
+		}	
+		else{
+			var emailId=$("#email").val()
 		var gaEvent = {
 			action: 'Email',
 			label: (fromDefaultAction === true) ? 'BrowserAction' : 'Popup',
 			actionMeta: bkg.AnalyticsHelper.getActionMeta("email")
 		};
-
 		// We get the current window
 		chrome.windows.getCurrent(function (win) {
-			bkg.Action.email({ window: win, gaEvent: gaEvent });
+			bkg.Action.email({ window: win, gaEvent: gaEvent,emailId:emailId });
 		});
+	}
 	});
 	// $('#actionOption').click(function(e){
 	// 	_gaq.push(['_trackEvent', 'Internal link', 'Option', 'options.html']);

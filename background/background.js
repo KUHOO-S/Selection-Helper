@@ -124,9 +124,8 @@ Action = {
 		var xhr = new XMLHttpRequest();
 		xhr.open("POST", url);
 
-		xhr.setRequestHeader("Authorization", "Bearer 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");
+		xhr.setRequestHeader("Authorization", "Bearer");
 		xhr.setRequestHeader("Content-Type", "application/json");
-
 		xhr.onreadystatechange = function () {
 			if (xhr.readyState === 4) {
 				console.log(xhr.status);

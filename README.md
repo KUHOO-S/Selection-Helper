@@ -54,8 +54,8 @@ git clone https://github.com/KUHOO-S/Selection-Helper.git
 ### Functionalities
 Selection Tap is a context search based extension, that eases the developer's work by adding some quick featues
 1. SEARCHING
-    - While developing, our extension provides easy exploration of the selected text thus saving time on copy pasting and searching on 'n' websites.
-    - When we right click on the selected text, we get an option bar with 4 different exploration tabs i.e google, stackoverflow, youtube, etc.
+    - While developing, our extension provides easy exploration of the selected text thus saving time on copy pasting & searching on 'n' websites.
+    - When we right click on the selected text, we get an option bar with 4 different exploration tabs i.e google, stackoverflow, etc.
     - User has automated search results for the selected text in a seperate tab without hindering the existing chrome tab.
 
 2. IFRAME

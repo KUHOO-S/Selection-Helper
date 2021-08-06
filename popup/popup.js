@@ -104,7 +104,8 @@ function storeSwitch() {
 	var switchState1 = document.getElementById("checkbox1").checked;
 	var switchState2 = document.getElementById("checkbox2").checked;
 	var switchState3 = document.getElementById("checkbox3").checked;
-	console.log(switchState0,switchState1, switchState2, switchState3)
+	var switchState4 = document.getElementById("checkbox4").checked;
+	console.log(switchState0,switchState1, switchState2, switchState3, switchState4)
 
 	chrome.storage.local.set({ checkBoxValue0: switchState0 }, function () {
 		chrome.storage.local.get(['checkBoxValue0'], function (result) {
@@ -125,6 +126,11 @@ function storeSwitch() {
 		chrome.storage.local.get(['checkBoxValue3'], function (result) {
 			console.log('Value currently is ' + result.checkBoxValue3);
 		});//console.log(switchState3);
+	});
+	chrome.storage.local.set({ checkBoxValue4: switchState4 }, function () {
+		chrome.storage.local.get(['checkBoxValue4'], function (result) {
+			console.log('Value currently is ' + result.checkBoxValue4);
+		});//console.log(switchState4);
 	});
 
 
@@ -183,9 +189,24 @@ document.addEventListener("DOMContentLoaded", function () {
 		document.getElementById('checkbox3').checked = setVal;
 
 	});
+
+	chrome.storage.local.get(['checkBoxValue4'], function (result) {
+		console.log('Value currently is ' + result.checkBoxValue4);
+		var setVal = result.checkBoxValue4;
+		if (result.checkBoxValue4 === undefined) {
+			setVal=true;
+			chrome.storage.local.set({ checkBoxValue4: true }, function () {
+				console.log(true);
+				
+			});
+		}
+		document.getElementById('checkbox4').checked = setVal;
+
+	});
 	document.getElementById("checkbox0").addEventListener("click", storeSwitch);
 	document.getElementById("checkbox1").addEventListener("click", storeSwitch);
 	document.getElementById("checkbox2").addEventListener("click", storeSwitch);
 	document.getElementById("checkbox3").addEventListener("click", storeSwitch);
+	document.getElementById("checkbox4").addEventListener("click", storeSwitch);
 
 });

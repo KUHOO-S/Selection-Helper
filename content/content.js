@@ -63,8 +63,8 @@ function buildSearchFrame(event, selectedText) {
 }
 
 function buildOptionBar(event, selectedText) {
-    var options=[0,0,0,0]
-    var images=['https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png','https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Stack_Overflow_icon.svg/768px-Stack_Overflow_icon.svg.png','https://www.freeiconspng.com/thumbs/youtube-logo-png/youtube-logo-png-picture-13.png','https://pngimg.com/uploads/wikipedia/wikipedia_PNG35.png']
+    var options=[0,0,0,0,0]
+    var images=['https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png','https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Stack_Overflow_icon.svg/768px-Stack_Overflow_icon.svg.png','https://www.freeiconspng.com/thumbs/youtube-logo-png/youtube-logo-png-picture-13.png','https://pngimg.com/uploads/wikipedia/wikipedia_PNG35.png', 'https://www.freepnglogos.com/uploads/twitter-logo-png/twitter-logo-vector-png-clipart-1.png']
     
     var optionBar = document.createElement('div');
     optionBar.className = "optionBar"
@@ -134,6 +134,21 @@ function buildOptionBar(event, selectedText) {
             anchor.appendChild(googleButton);
             optionBar.appendChild(anchor);
 
+        }
+    });
+
+    chrome.storage.local.get(['checkBoxValue4'], function (result) {
+        console.log('Value currently is ' + result.checkBoxValue4);
+        if (result.checkBoxValue4) {
+            options[4]=1;
+            var googleButton = document.createElement('img');
+            googleButton.className = 'optionBarImage';
+            googleButton.src = images[4];
+            var anchor=document.createElement('a');
+            anchor.target = "blank";
+            anchor.href='https://twitter.com/search?q='+ selectedText ;
+            anchor.appendChild(googleButton);
+            optionBar.appendChild(anchor);
         }
     });
 

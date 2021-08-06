@@ -24,7 +24,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 	switch (request.type) {
 		case "copy":
 			var nombre = (request.copied_url > 1) ? 's' : '';
-			jQuery('#message').removeClass('error').html("<b>" + request.copied_url + "</b> url" + nombre + " successfully !");
+			jQuery('#message').removeClass('error').html("<b>" + request.copied_url + "</b> url" + nombre + " copied successfully !");
 			//setTimeout(function () { window.close(); }, 3000); // Closing of the popup a few seconds after displaying the message
 			break;
 		case "email":

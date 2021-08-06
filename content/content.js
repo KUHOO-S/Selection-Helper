@@ -23,7 +23,7 @@ window.oncontextmenu = function (event) {
         buildSearchFrame(event, selectedText);
 
         //build optionBar
-        buildOptionBar(event);
+        buildOptionBar(event, selectedText);
 
     }
 }
@@ -62,7 +62,7 @@ function buildSearchFrame(event, selectedText) {
 
 }
 
-function buildOptionBar(event) {
+function buildOptionBar(event, selectedText) {
     var options=[0,0,0,0]
     var images=['https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png','https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Stack_Overflow_icon.svg/768px-Stack_Overflow_icon.svg.png','https://www.freeiconspng.com/thumbs/youtube-logo-png/youtube-logo-png-picture-13.png','https://pngimg.com/uploads/wikipedia/wikipedia_PNG35.png']
     
@@ -81,7 +81,12 @@ function buildOptionBar(event) {
             googleButton.className = 'optionBarImage';
             googleButton.src = images[0];
             optionBar.appendChild(googleButton);
-
+            var anchor=document.createElement('a');
+            anchor.target = "blank";
+            anchor.href='https://google.com/search?q='+ selectedText + "&igu=1" ;
+            anchor.appendChild(googleButton);
+            optionBar.appendChild(anchor);
+            
         }
     });
     chrome.storage.local.get(['checkBoxValue1'], function (result) {
@@ -91,10 +96,14 @@ function buildOptionBar(event) {
             var googleButton = document.createElement('img');
             googleButton.className = 'optionBarImage';
             googleButton.src = images[1];
-            optionBar.appendChild(googleButton);
-
+            var anchor=document.createElement('a');
+            anchor.target = "blank";
+            anchor.href='https://stackoverflow.com/search?q='+ selectedText ;
+            anchor.appendChild(googleButton);
+            optionBar.appendChild(anchor);
         }
     });
+
     chrome.storage.local.get(['checkBoxValue2'], function (result) {
         console.log('Value currently is ' + result.checkBoxValue2);
         if (result.checkBoxValue2) {
@@ -103,6 +112,11 @@ function buildOptionBar(event) {
             googleButton.className = 'optionBarImage';
             googleButton.src = images[2];
             optionBar.appendChild(googleButton);
+            var anchor=document.createElement('a');
+            anchor.target = "blank";
+            anchor.href='https://www.youtube.com/results?search_query='+ selectedText ;
+            anchor.appendChild(googleButton);
+            optionBar.appendChild(anchor);
 
         }
     });
@@ -114,6 +128,11 @@ function buildOptionBar(event) {
             googleButton.className = 'optionBarImage';
             googleButton.src = images[3];
             optionBar.appendChild(googleButton);
+            var anchor=document.createElement('a');
+            anchor.target = "blank";
+            anchor.href='https://en.wikipedia.org/wiki/' + selectedText ;
+            anchor.appendChild(googleButton);
+            optionBar.appendChild(anchor);
 
         }
     });

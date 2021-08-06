@@ -23,6 +23,7 @@ Yes you heard that right, Search-Tap let's you do that and helps you save a lot 
 * [Prototypes](#prototypes)
 * [Installation](#installation)
 * [Contributors](#contributors)
+* [Functionalities](#functionalities)
 
 ### Introduction:
 Search Tap is a browser plugin that is a one stop reasearch work solution for developers and students. 
@@ -45,8 +46,34 @@ Search Tap is a browser plugin that is a one stop reasearch work solution for de
 ```sh
 git clone https://github.com/KUHOO-S/Selection-Helper.git
 ```
-2. Enable developer mode in Chrome/Firefox browser and upload the folder
-3. Refresh the extension and all tabs which might be currently open in your web browser.
+2. Go to Google Chrome/Firefox Extensions
+3. Enable developer mode in Chrome/Firefox browser and upload the folder
+4. Refresh the extension and all tabs which might be currently open in your web browser
+5. Pin the extension on the top left corner for accessing pop-up functionalities
+
+### Functionalities
+Selection Tap is a context search based extension, that eases the developer's work by adding some quick featues
+1. SEARCHING
+    - While developing, our extension provides easy exploration of the selected text thus saving time on copy pasting and searching on 'n' websites.
+    - When we right click on the selected text, we get an option bar with 4 different exploration tabs i.e google, stackoverflow, youtube, etc.
+    - User has automated search results for the selected text in a seperate tab without hindering the existing chrome tab.
+
+2. IFRAME
+    - Inorder to find answers to short questions or finding meanings to small queries, we introduced the 'iframe'.
+    - Iframe enables you to open a small window on the same screen giving you the desired result for the selected text.
+    - Iframe shows all results from google in a small window that does not interfere with the current tab.
+      
+3. COPY & PASTE
+    - For quick copying all the tabs currently opened and pasting them into a clipboard.
+    - When we click the 'paste' button, all the tabs copied in clipboard will automatically open in chrome.
+    - We can also paste the tabs in notepad or any other platform as urls.
+
+4. INTEGRATING WITH TWILLIO
+    - We can also mail the copied tab's url to a specific person by mentioning their email address in the email section. 
+    - This feature is added with intergrating twillio sendgrid in our chrome extension.
+
+5. DEFAULT
+    - Default is added in the pop-up box for changing the settings in the toogle button to add/ remove any particular option bar.
 
 ### Contributors
 
@@ -62,6 +89,7 @@ Thanks goes to these wonderful people :
     <td align="center"><a href="https://github.com/ananya0504"><img src="https://avatars.githubusercontent.com/u/50453232?v=4" width="100px;" alt=""/><br /><sub><b>Ananya0504</b></sub></a><br /><a href="https://github.com/KUHOO-S/Selection-Helper/commits?author=ananya0504" title="Code,Design">💻 🎨</a></td>
   </tr>
 </table>
+
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->

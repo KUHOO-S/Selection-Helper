@@ -137,7 +137,7 @@ Action = {
 		};
 		data = {
 			"personalizations": [{ "to": [{ "email": opt.emailId }] }],
-			"from": { "email": "ananyagupta0504@gmail.com" },
+			"from": { "email": "searchtap.team@gmail.com" },
 			"subject": "Copied Urls from SearchTap",
 			"content": [{ "type": "text/plain", "value": outputText }]
 		}

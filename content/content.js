@@ -5,7 +5,6 @@ window.onclick = function (event) {
     clearFrames();
 }
 window.oncontextmenu = function (event) {
-    event.preventDefault();
     clearFrames();
     var selectedText = '';
 
@@ -16,6 +15,8 @@ window.oncontextmenu = function (event) {
         action: 'handleMessage'
     };
     if (selectedText != '') {
+        event.preventDefault();
+    
         chrome.runtime.sendMessage(request);
 
         /*var url = "https://www.google.com/search?q=";

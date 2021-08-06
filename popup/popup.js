@@ -146,3 +146,74 @@ jQuery(function ($) {
 	// 	});
 	// }
 });
+
+function storeSwitch() {
+	var switchState1 = document.getElementById("checkbox1").checked;
+	var switchState2 = document.getElementById("checkbox2").checked;
+	var switchState3 = document.getElementById("checkbox3").checked;
+	console.log(switchState1, switchState2, switchState3)
+
+	chrome.storage.local.set({ checkBoxValue1: switchState1 }, function () {
+		chrome.storage.local.get(['checkBoxValue1'], function (result) {
+			console.log('Value currently is ' + result.checkBoxValue1);
+		});//console.log(switchState1);
+	});
+	chrome.storage.local.set({ checkBoxValue2: switchState2 }, function () {
+		chrome.storage.local.get(['checkBoxValue2'], function (result) {
+			console.log('Value currently is ' + result.checkBoxValue2);
+		});//console.log(switchState2);
+	});
+	chrome.storage.local.set({ checkBoxValue3: switchState3 }, function () {
+		chrome.storage.local.get(['checkBoxValue3'], function (result) {
+			console.log('Value currently is ' + result.checkBoxValue3);
+		});//console.log(switchState3);
+	});
+
+
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+	chrome.storage.local.get(['checkBoxValue1'], function (result) {
+		console.log('Value currently is ' + result.checkBoxValue1);
+		var setVal = result.checkBoxValue1;
+		if (result.checkBoxValue1 === undefined) {
+			setVal=true;
+			chrome.storage.local.set({ checkBoxValue1: true }, function () {
+				console.log(true);
+				
+			});
+		}
+		document.getElementById('checkbox1').checked = setVal;
+
+	});
+	chrome.storage.local.get(['checkBoxValue2'], function (result) {
+		console.log('Value currently is ' + result.checkBoxValue2);
+		var setVal = result.checkBoxValue2;
+		if (result.checkBoxValue2 === undefined) {
+			setVal=true;
+			chrome.storage.local.set({ checkBoxValue2: true }, function () {
+				console.log(true);
+				
+			});
+		}
+		document.getElementById('checkbox2').checked = setVal;
+
+	});
+	chrome.storage.local.get(['checkBoxValue3'], function (result) {
+		console.log('Value currently is ' + result.checkBoxValue3);
+		var setVal = result.checkBoxValue3;
+		if (result.checkBoxValue3 === undefined) {
+			setVal=true;
+			chrome.storage.local.set({ checkBoxValue3: true }, function () {
+				console.log(true);
+				
+			});
+		}
+		document.getElementById('checkbox3').checked = setVal;
+
+	});
+	document.getElementById("checkbox1").addEventListener("click", storeSwitch);
+	document.getElementById("checkbox2").addEventListener("click", storeSwitch);
+	document.getElementById("checkbox3").addEventListener("click", storeSwitch);
+
+});

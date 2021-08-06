@@ -141,6 +141,9 @@
           transform:scale(1);
         }
         li {
+          /* border: #000000;
+          border-style: dashed;
+          border-width: initial; */
           list-style: none;
           cursor: pointer;
           margin: 0px;
@@ -292,16 +295,24 @@
                 </div>
               </li>
               <li id="actionEmail">
-                <div class="menu" style="font-size: medium; padding:10px; color: rgb(93, 93, 100); font-size: 20px;">
+                <div class="menu" style="font-size: medium; padding-bottom: 2px; padding-left: 10px; padding-right: 10; padding-top: 10px; color: rgb(93, 93, 100); font-size: 20px;">
                   <i class="fa fa-envelope"></i>
                   <span class="text"> &nbsp Email</span>
                 </div>
-              </li>
-              <li id="actionEnter">
-                <div class="menu" style="font-size: medium; padding:10px; color: rgb(93, 93, 100); font-size: 20px;">
-                  <input type="text" id="email" placeholder="xyz@emai.com">
+
+                <span class="text" style="padding-left: 10px; ">  Press the Copy button before emailing!! &nbsp</span>
+
+                <div id="actionEnter">
+                  <div class="menu" style="font-size: medium; padding-bottom: 10px; padding-left: 10px; padding-right: 10; padding-top:2px; color: rgb(93, 93, 100); font-size: 20px;">
+                    <input type="text" id="email" placeholder="xyz@email.com">
+                  </div>
                 </div>
               </li>
+              <!-- <div id="actionEnter">
+                <div class="menu" style="font-size: medium; padding:20px; color: rgb(93, 93, 100); font-size: 20px;">
+                  <input type="text" id="email" placeholder="xyz@email.com">
+                </div>
+              </div> -->
             </ul>
             <div id="message"></div>
             <div id="recently-updated" style="font-size: medium; padding:10px; color: rgb(93, 93, 100); font-size: 20px; display:none;"></div>

@@ -2,7 +2,7 @@
 
 ![banner (1)](https://user-images.githubusercontent.com/56020411/127701851-2abcf11a-48f4-4b71-8100-4d7688940831.png)
 
-### Inspiration
+## Inspiration
 
 <img src="assets/images/bulb.png" align="right" alt="Inspiration" style="margin-left: 10px; border-radius: 10px;" width="210" height="178">
 
@@ -22,25 +22,25 @@ Yes you heard that right, Search-Tap let's you do that and helps you save a lot 
 * [Introduction](#introduction)
 * [Prototypes](#prototypes)
 * [Installation](#installation)
+* [Features](#features)
 * [Contributors](#contributors)
-* [Functionalities](#functionalities)
 
-### Introduction:
+## Introduction:
 Search Tap is a browser plugin that is a one stop reasearch work solution for developers and students. 
 - Quick search option via right click on different platforms.
 - A toggle button to serve search option to you on only those websites where you really want to
 - A bookmark like feature to save some of your favourite websites which you might use daily or have to log on to on a daily basis for work!
 - No need to open millions of tabs and windows now to search data which you don't know. Just use the SEARCH ALL option and get the search results for the same data on different platforms on just 1 TAB! Isn't that a totally new user experience??
 
-### Prototypes:
+## Prototypes:
 ![wireframe-1](https://user-images.githubusercontent.com/56020411/128554440-abf71347-6d3a-406e-bdf3-421bde012e90.png)
 
 
 ### Github Projects :
-![image](https://user-images.githubusercontent.com/45617530/127705321-5c5ad67f-c5c3-43d9-bb8d-b3369af7ee70.png)
+![image](https://user-images.githubusercontent.com/45617530/128562230-4a06c8d4-354f-4466-9fde-4fc70cbf3921.png)
 
 
-### Installation
+## Installation
 
 1. Clone the repository
 ```sh
@@ -51,7 +51,7 @@ git clone https://github.com/KUHOO-S/Selection-Helper.git
 4. Refresh the extension and all tabs which might be currently open in your web browser
 5. Pin the extension on the top left corner for accessing pop-up functionalities
 
-### Functionalities
+### Features
 Selection Tap is a context search based extension, that eases the developer's work by adding some quick featues
 1. SEARCHING
     - While developing, our extension provides easy exploration of the selected text thus saving time on copy pasting & searching on 'n' websites.
@@ -71,11 +71,12 @@ Selection Tap is a context search based extension, that eases the developer's wo
 4. INTEGRATING WITH TWILLIO
     - We can also mail the copied tab's url to a specific person by mentioning their email address in the email section. 
     - This feature is added with intergrating twillio sendgrid in our chrome extension.
+    - ![image](https://user-images.githubusercontent.com/45617530/128563414-8174cfc5-e7a5-462c-92f3-576577e1fe2b.png)
 
 5. DEFAULT
     - Default is added in the pop-up box for changing the settings in the toogle button to add/ remove any particular option bar.
 
-### Contributors
+## Contributors
 
 Thanks goes to these wonderful people :
 

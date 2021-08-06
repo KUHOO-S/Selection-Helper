@@ -16,10 +16,6 @@ for (let i = 0; i < tabsPane.length; i++) {
 }
 
 
-/////////////////////////////////////////////////////
-/////////////////////////////////////////////////////
-/////////////////////////////////////////////////////
-
 bkg = chrome.extension.getBackgroundPage(); // Retrieving a reference to the backgroundpage
 
 // Display of the number of copied URLs, message sent by the background page
@@ -43,7 +39,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 			break;
 
 		case "paste":
-			// If an error message is present, we display it, otherwise we close the popup
+			// Error handler
 			if (request.errorMsg) {
 				jQuery('#message').addClass('error').html(request.errorMsg);
 				return;
@@ -53,15 +49,6 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 	}
 });
 
-// Loading google analytics
-// var _gaq = _gaq || [];
-// _gaq.push(['_setAccount', bkg.AnalyticsHelper.gaAccount]);
-// _gaq.push(['_trackPageview']);
-// bkg.AnalyticsHelper.gaLoad(document);
-
-/**
-* Management of popup buttons
-*/
 jQuery(function ($) {
 	$('#actionCopy').on('click', function (e, fromDefaultAction) {
 		var gaEvent = {
@@ -110,49 +97,20 @@ jQuery(function ($) {
 		});
 	}
 	});
-	// $('#actionOption').click(function(e){
-	// 	_gaq.push(['_trackEvent', 'Internal link', 'Option', 'options.html']);
-	// 	chrome.tabs.create({url: 'options.html'});
-	// });
-	// $('#contribute a').click(function(e){
-	// 	_gaq.push(['_trackEvent', 'Internal link', 'Contribute', 'options.html#donate']);
-	// 	chrome.tabs.create({url: 'options.html#donate'});
-	// });
-
-	// Default action
-	// var default_action = localStorage['default_action'] ? localStorage['default_action'] : "menu";
-	// if( default_action != "menu" ){
-	// 	// Masquage des boutons
-	// 	$('body>ul').hide();
-	// 	$('#message').css({'padding':'3px 0 5px'});
-
-	// 	// Triggering of the default action configured in the options
-	// 	switch(default_action){
-	// 		case "copy":
-	// 			$('#actionCopy').trigger('click', [true]);
-	// 			break;
-	// 		case "paste":
-	// 			$('#actionPaste').trigger('click', [true]);
-	// 			break;
-	// 	}
-	// }
-
-	// New version notification display in the option page
-	// if (bkg.UpdateManager.updateNotify()) {
-	// 	var content = "New version recently installed. Check the <a href=\"https://vincepare.github.io/CopyAllUrl_Chrome/\">changelog</a>.";
-	// 	$('#recently-updated').html(content).show().find('a').click(function(e){
-	// 		_gaq.push(['_trackEvent', 'External link', 'changelog recent update', $(this).attr('href')]);
-	// 		chrome.tabs.create({url: $(this).attr('href')});
-	// 	});
-	// }
 });
 
 function storeSwitch() {
+	var switchState0 = document.getElementById("checkbox0").checked;
 	var switchState1 = document.getElementById("checkbox1").checked;
 	var switchState2 = document.getElementById("checkbox2").checked;
 	var switchState3 = document.getElementById("checkbox3").checked;
-	console.log(switchState1, switchState2, switchState3)
+	console.log(switchState0,switchState1, switchState2, switchState3)
 
+	chrome.storage.local.set({ checkBoxValue0: switchState0 }, function () {
+		chrome.storage.local.get(['checkBoxValue0'], function (result) {
+			console.log('Value currently is ' + result.checkBoxValue0);
+		});//console.log(switchState0);
+	});
 	chrome.storage.local.set({ checkBoxValue1: switchState1 }, function () {
 		chrome.storage.local.get(['checkBoxValue1'], function (result) {
 			console.log('Value currently is ' + result.checkBoxValue1);
@@ -173,6 +131,19 @@ function storeSwitch() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
+	chrome.storage.local.get(['checkBoxValue0'], function (result) {
+		console.log('Value currently is ' + result.checkBoxValue0);
+		var setVal = result.checkBoxValue0;
+		if (result.checkBoxValue0 === undefined) {
+			setVal=true;
+			chrome.storage.local.set({ checkBoxValue0: true }, function () {
+				console.log(true);
+				
+			});
+		}
+		document.getElementById('checkbox0').checked = setVal;
+
+	});
 	chrome.storage.local.get(['checkBoxValue1'], function (result) {
 		console.log('Value currently is ' + result.checkBoxValue1);
 		var setVal = result.checkBoxValue1;
@@ -212,6 +183,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		document.getElementById('checkbox3').checked = setVal;
 
 	});
+	document.getElementById("checkbox0").addEventListener("click", storeSwitch);
 	document.getElementById("checkbox1").addEventListener("click", storeSwitch);
 	document.getElementById("checkbox2").addEventListener("click", storeSwitch);
 	document.getElementById("checkbox3").addEventListener("click", storeSwitch);

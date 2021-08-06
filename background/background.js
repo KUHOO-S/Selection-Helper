@@ -1,15 +1,5 @@
-/**
-* Manage access to the clipboard
-* (we have to go through the background page to access it, see: http://stackoverflow.com/questions/6925073/copy-paste-not-working-in-chrome-extension)
-*/
 Clipboard = {
 	/**
-	* Writes the string passed as a parameter to the clipboard ("Copy" function)
-	*
-	* We do not have access to the clipboard via the Google Chrome API,
-	* so the trick is to put the text to copy in a <textarea>,
-	* to select all the contents of this <textarea>, and to copy.
-	*
 	* @param String str String to copy to clipboard
 	* @param Bool extended_mime Indicates whether to copy the MIME type text / html in addition to the plain text
 	*/
@@ -124,7 +114,7 @@ Action = {
 		var xhr = new XMLHttpRequest();
 		xhr.open("POST", url);
 
-		xhr.setRequestHeader("Authorization", "Bearer");
+		xhr.setRequestHeader("Authorization", "Bearer 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");
 		xhr.setRequestHeader("Content-Type", "application/json");
 		xhr.onreadystatechange = function () {
 			if (xhr.readyState === 4) {
@@ -276,104 +266,6 @@ CopyTo = {
 };
 
 /**
-* Keyboard shortcuts
-*/
-chrome.commands.onCommand.addListener(function (command) {
-	switch (command) {
-		case "copy":
-			var gaEvent = {
-				action: 'Copy',
-				label: 'Command',
-				actionMeta: AnalyticsHelper.getActionMeta("copy")
-			};
-			chrome.windows.getCurrent(function (win) {
-				Action.copy({ window: win, gaEvent: gaEvent });
-			});
-			break;
-		case "paste":
-			var gaEvent = {
-				action: 'Paste',
-				label: 'Command',
-				actionMeta: AnalyticsHelper.getActionMeta("paste")
-			};
-			Action.paste({ gaEvent: gaEvent });
-			break;
-	}
-});
-
-/**
-* Update notification
-*/
-UpdateManager = {
-	/** Informaion filled by the runtime.onInstalled callback */
-	runtimeOnInstalledStatus: null,
-
-	/** (bool) Indicates whether the update notification is active */
-	updateNotify: function () {
-		return localStorage['update_notify'] === "true" && UpdateManager.recentUpdate();
-	},
-
-	/** (bool) Indicates if an update of the extension has taken place recently*/
-	recentUpdate: function () {
-		try {
-			var timeDiff = new Date().getTime() - new Date(parseInt(localStorage['update_last_time'])).getTime();
-			if (timeDiff < 1000 * 3600 * 24) {
-				return true;
-			}
-		} catch (ex) { }
-		return false;
-	},
-
-	/** Set the badge if an update has taken place recently */
-	setBadge: function () {
-		if (!UpdateManager.updateNotify()) {
-			chrome.browserAction.setBadgeText({ text: '' });
-			return;
-		}
-		chrome.browserAction.setBadgeText({ text: 'NEW' });
-	}
-};
-UpdateManager.setBadge();
-chrome.runtime.onInstalled.addListener(function (details) {
-	if (details.reason != 'update') {
-		UpdateManager.runtimeOnInstalledStatus = "Not an update (" + details.reason + ")"
-		return;
-	}
-
-	if (details.previousVersion == chrome.runtime.getManifest().version) {
-		UpdateManager.runtimeOnInstalledStatus = "Same version (" + details.previousVersion + ")";
-		return;
-	}
-
-	// Memorization of the date of the last update
-	localStorage['update_last_time'] = new Date().getTime();
-	localStorage['update_previous_version'] = details.previousVersion;
-	UpdateManager.runtimeOnInstalledStatus = "Updated";
-
-	// Badge update
-	UpdateManager.setBadge();
-
-	// Tracking event
-	_gaq.push(['_trackEvent', 'Lifecycle', 'Update', details.previousVersion]);
-
-	// Notification display
-	chrome.notifications.onClicked.addListener(function (notificationId) {
-		if (notificationId == "cpau_update_notification") {
-			_gaq.push(['_trackEvent', 'Internal link', 'Notification', 'https://vincepare.github.io/CopyAllUrl_Chrome/']);
-			chrome.tabs.create({ url: 'https://vincepare.github.io/CopyAllUrl_Chrome/' });
-		}
-	});
-	if (UpdateManager.updateNotify()) {
-		chrome.notifications.create("cpau_update_notification", {
-			type: "basic",
-			title: "Copy All Urls updated",
-			message: "New version installed : " + chrome.runtime.getManifest().version + ". Click to see new features.",
-			iconUrl: "img/umbrella_128.png"
-		}, function (notificationId) { });
-	}
-});
-
-/**
 * Web analytics utility functions
 */
 AnalyticsHelper = {
@@ -480,19 +372,3 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 
 
 });
-
-/*function setzeFrame(selectedText,url,event){
-	var searchFrame = document.createElement('iframe'); // is a node
-			searchFrame.src = "https://www.google.com/search?q=" + selectedText + "&igu=1";
-			searchFrame.style.left = String(Number(event.pageX) + 125) + 'px';
-			searchFrame.style.top = event.pageY + 'px';
-			searchFrame.style.position = 'absolute';
-			searchFrame.style.zIndex = '100';
-			searchFrame.height = '450';
-			searchFrame.width = '500';
-			document.body.append(searchFrame);
-			console.log("i trie")
-			console.log(searchFrame)
-			return searchFrame;
-	}
-*/

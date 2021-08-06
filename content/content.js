@@ -42,23 +42,13 @@ function clearFrames() {
 }
 
 function buildSearchFrame(event, selectedText) {
-    var link = document.createElement('a');
-
-    link.href = "https://www.google.com/search?q=" + selectedText;
-    link.target = "_blank";
-    link.className = "linkwrap";
-
-    var mydiv = document.createElement('div');
-    mydiv.className = "searchFrame";
     var searchFrame = document.createElement('iframe');
     searchFrame.className = "searchFrame";
 
     searchFrame.src = "https://www.google.com/search?q=" + selectedText + "&igu=1";
-    mydiv.style.left = String(Number(event.pageX) + 125) + 'px';
-    mydiv.style.top = event.pageY + 'px';
-    link.appendChild(searchFrame);
-    mydiv.appendChild(link);
-    document.body.append(mydiv);
+    searchFrame.style.left = String(Number(event.pageX) + 125) + 'px';
+    searchFrame.style.top = event.pageY + 'px';
+    document.body.append(searchFrame);
 
 }
 

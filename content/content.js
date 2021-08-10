@@ -1,4 +1,65 @@
 chrome.runtime.onConnect.addListener(function (port) { });
+chrome.storage.local.get(['checkBoxValue0'], function (result) {
+		console.log('Value currently is ' + result.checkBoxValue0);
+		var setVal = result.checkBoxValue0;
+		if (result.checkBoxValue0 === undefined) {
+			setVal = true;
+			chrome.storage.local.set({ checkBoxValue0: true }, function () {
+				console.log(true);
+
+			});
+		}
+
+	});
+	chrome.storage.local.get(['checkBoxValue1'], function (result) {
+		console.log('Value currently is ' + result.checkBoxValue1);
+		var setVal = result.checkBoxValue1;
+		if (result.checkBoxValue1 === undefined) {
+			setVal = true;
+			chrome.storage.local.set({ checkBoxValue1: true }, function () {
+				console.log(true);
+
+			});
+		}
+
+	});
+	chrome.storage.local.get(['checkBoxValue2'], function (result) {
+		console.log('Value currently is ' + result.checkBoxValue2);
+		var setVal = result.checkBoxValue2;
+		if (result.checkBoxValue2 === undefined) {
+			setVal = true;
+			chrome.storage.local.set({ checkBoxValue2: true }, function () {
+				console.log(true);
+
+			});
+		}
+
+	});
+	chrome.storage.local.get(['checkBoxValue3'], function (result) {
+		console.log('Value currently is ' + result.checkBoxValue3);
+		var setVal = result.checkBoxValue3;
+		if (result.checkBoxValue3 === undefined) {
+			setVal = true;
+			chrome.storage.local.set({ checkBoxValue3: true }, function () {
+				console.log(true);
+
+			});
+		}
+
+	});
+
+	chrome.storage.local.get(['checkBoxValue4'], function (result) {
+		console.log('Value currently is ' + result.checkBoxValue4);
+		var setVal = result.checkBoxValue4;
+		if (result.checkBoxValue4 === undefined) {
+			setVal = true;
+			chrome.storage.local.set({ checkBoxValue4: true }, function () {
+				console.log(true);
+
+			});
+		}
+
+	});
 
 var request = {};
 window.onclick = function (event) {
@@ -65,13 +126,6 @@ function buildOptionBar(event, selectedText) {
 
     chrome.storage.local.get(['checkBoxValue0'], function (result) {
         console.log('Value currently is ' + result.checkBoxValue0);
-        if (result.checkBoxValue0 === undefined) {
-			setVal = true;
-			chrome.storage.local.set({ checkBoxValue0: true }, function () {
-				console.log(true);
-
-			});
-		}
         if (result.checkBoxValue0) {
             options[0]=1;
             var googleButton = document.createElement('img');
@@ -88,13 +142,6 @@ function buildOptionBar(event, selectedText) {
     });
     chrome.storage.local.get(['checkBoxValue1'], function (result) {
         console.log('Value currently is ' + result.checkBoxValue1);
-        if (result.checkBoxValue1 === undefined) {
-			setVal = true;
-			chrome.storage.local.set({ checkBoxValue1: true }, function () {
-				console.log(true);
-
-			});
-		}
         if (result.checkBoxValue1) {
             options[1]=1;
             var googleButton = document.createElement('img');
@@ -110,13 +157,6 @@ function buildOptionBar(event, selectedText) {
 
     chrome.storage.local.get(['checkBoxValue2'], function (result) {
         console.log('Value currently is ' + result.checkBoxValue2);
-        if (result.checkBoxValue2 === undefined) {
-			setVal = true;
-			chrome.storage.local.set({ checkBoxValue2: true }, function () {
-				console.log(true);
-
-			});
-		}
         if (result.checkBoxValue2) {
             options[2]=1;
             var googleButton = document.createElement('img');
@@ -133,13 +173,6 @@ function buildOptionBar(event, selectedText) {
     });
     chrome.storage.local.get(['checkBoxValue3'], function (result) {
         console.log('Value currently is ' + result.checkBoxValue3);
-        if (result.checkBoxValue3 === undefined) {
-			setVal = true;
-			chrome.storage.local.set({ checkBoxValue3: true }, function () {
-				console.log(true);
-
-			});
-		}
         if (result.checkBoxValue3) {
             options[3]=1;
             var googleButton = document.createElement('img');
@@ -157,13 +190,6 @@ function buildOptionBar(event, selectedText) {
 
     chrome.storage.local.get(['checkBoxValue4'], function (result) {
         console.log('Value currently is ' + result.checkBoxValue4);
-        if (result.checkBoxValue4 === undefined) {
-			setVal = true;
-			chrome.storage.local.set({ checkBoxValue4: true }, function () {
-				console.log(true);
-
-			});
-		}
         if (result.checkBoxValue4) {
             options[4]=1;
             var googleButton = document.createElement('img');

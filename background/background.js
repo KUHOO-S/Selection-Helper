@@ -101,7 +101,7 @@ Action = {
 	email: function (opt) {
 		if(opt.error)
 		{
-			chrome.runtime.sendMessage({ type: "email", errorMsg: "Please enter email" });
+			chrome.runtime.sendMessage({ type: "email", errorMsg: opt.error });
 			return;
 		}
 		else{
@@ -326,24 +326,7 @@ AnalyticsHelper = {
 		return serialized;
 	},
 
-	/** Load google analytics (ga.js) in the document passed as a parameter */
-	gaLoad: function (doc) {
-		var ga = doc.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-		ga.src = 'https://ssl.google-analytics.com/ga.js';
-		var s = doc.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-	},
-
-	/** Google Analytics account ID */
-	gaAccount: 'UA-30512078-5'
 };
-
-// Loading google analytics
-var _gaq = _gaq || [];
-_gaq.push(['_setAccount', AnalyticsHelper.gaAccount]);
-_gaq.push(['_setCustomVar', 1, 'Version', chrome.runtime.getManifest().version, 2]);
-_gaq.push(['_setCustomVar', 2, 'Settings', AnalyticsHelper.getShortSettings(), 2]);
-_gaq.push(['_trackPageview']);
-AnalyticsHelper.gaLoad(document);
 
 jQuery(function ($) {
 	// When loading the page, we create a textarea which will be used to read and write in the clipboard

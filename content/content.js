@@ -1,65 +1,55 @@
 chrome.runtime.onConnect.addListener(function (port) { });
 chrome.storage.local.get(['checkBoxValue0'], function (result) {
-		console.log('Value currently is ' + result.checkBoxValue0);
-		var setVal = result.checkBoxValue0;
-		if (result.checkBoxValue0 === undefined) {
-			setVal = true;
-			chrome.storage.local.set({ checkBoxValue0: true }, function () {
-				console.log(true);
+    console.log('Value currently is ' + result.checkBoxValue0);
+    if (result.checkBoxValue0 === undefined) {
+        chrome.storage.local.set({ checkBoxValue0: true }, function () {
+            console.log(true);
 
-			});
-		}
+        });
+    }
 
-	});
-	chrome.storage.local.get(['checkBoxValue1'], function (result) {
-		console.log('Value currently is ' + result.checkBoxValue1);
-		var setVal = result.checkBoxValue1;
-		if (result.checkBoxValue1 === undefined) {
-			setVal = true;
-			chrome.storage.local.set({ checkBoxValue1: true }, function () {
-				console.log(true);
+});
+chrome.storage.local.get(['checkBoxValue1'], function (result) {
+    console.log('Value currently is ' + result.checkBoxValue1);
+    if (result.checkBoxValue1 === undefined) {
+        chrome.storage.local.set({ checkBoxValue1: true }, function () {
+            console.log(true);
 
-			});
-		}
+        });
+    }
 
-	});
-	chrome.storage.local.get(['checkBoxValue2'], function (result) {
-		console.log('Value currently is ' + result.checkBoxValue2);
-		var setVal = result.checkBoxValue2;
-		if (result.checkBoxValue2 === undefined) {
-			setVal = true;
-			chrome.storage.local.set({ checkBoxValue2: true }, function () {
-				console.log(true);
+});
+chrome.storage.local.get(['checkBoxValue2'], function (result) {
+    console.log('Value currently is ' + result.checkBoxValue2);
+    if (result.checkBoxValue2 === undefined) {
+        chrome.storage.local.set({ checkBoxValue2: true }, function () {
+            console.log(true);
 
-			});
-		}
+        });
+    }
 
-	});
-	chrome.storage.local.get(['checkBoxValue3'], function (result) {
-		console.log('Value currently is ' + result.checkBoxValue3);
-		var setVal = result.checkBoxValue3;
-		if (result.checkBoxValue3 === undefined) {
-			setVal = true;
-			chrome.storage.local.set({ checkBoxValue3: true }, function () {
-				console.log(true);
+});
+chrome.storage.local.get(['checkBoxValue3'], function (result) {
+    console.log('Value currently is ' + result.checkBoxValue3);
+    if (result.checkBoxValue3 === undefined) {
+        chrome.storage.local.set({ checkBoxValue3: true }, function () {
+            console.log(true);
 
-			});
-		}
+        });
+    }
 
-	});
+});
 
-	chrome.storage.local.get(['checkBoxValue4'], function (result) {
-		console.log('Value currently is ' + result.checkBoxValue4);
-		var setVal = result.checkBoxValue4;
-		if (result.checkBoxValue4 === undefined) {
-			setVal = true;
-			chrome.storage.local.set({ checkBoxValue4: true }, function () {
-				console.log(true);
+chrome.storage.local.get(['checkBoxValue4'], function (result) {
+    console.log('Value currently is ' + result.checkBoxValue4);
+    if (result.checkBoxValue4 === undefined) {
+        chrome.storage.local.set({ checkBoxValue4: true }, function () {
+            console.log(true);
 
-			});
-		}
+        });
+    }
 
-	});
+});
 
 var request = {};
 window.onclick = function (event) {
@@ -79,12 +69,23 @@ window.oncontextmenu = function (event) {
         event.preventDefault();
 
         //chrome.runtime.sendMessage(request);
-
+        var leftMargin=Number(event.pageX) + 125+$(window).width()/4;
+        console.log(leftMargin);
+        console.log($(window).width());
+        if (leftMargin>$(window).width()){
+            console.log("ku");
+            leftMargin=$(window).width()-($(window).width()/4);
+        }
+        else{
+            leftMargin=leftMargin-$(window).width()/4;
+        }
+        var topMargin=Number(event.pageY);
+        
         //build iframe
-        buildSearchFrame(event, selectedText);
+        buildSearchFrame(event, selectedText,leftMargin,topMargin);
 
         //build optionBar
-        buildOptionBar(event, selectedText);
+        buildOptionBar(event, selectedText,leftMargin,topMargin);
 
     }
 }
@@ -102,109 +103,74 @@ function clearFrames() {
     }
 }
 
-function buildSearchFrame(event, selectedText) {
+function buildSearchFrame(event, selectedText,leftMargin,topMargin) {
     var searchFrame = document.createElement('iframe');
     searchFrame.className = "searchFrame";
 
     searchFrame.src = "https://www.google.com/search?q=" + selectedText + "&igu=1";
-    searchFrame.style.left = String(Number(event.pageX) + 125) + 'px';
-    searchFrame.style.top = event.pageY + 'px';
+    searchFrame.style.left = String(leftMargin) + 'px';
+    searchFrame.style.top = String(topMargin) + 'px';
+    searchFrame.style.width=$(window).width()/4+'px';
+    searchFrame.style.height=$(window).height()/2+'px';
     document.body.append(searchFrame);
 
 }
 
-function buildOptionBar(event, selectedText) {
-    var options=[0,0,0,0,0]
-    var images=['https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png','https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Stack_Overflow_icon.svg/768px-Stack_Overflow_icon.svg.png','https://www.freeiconspng.com/thumbs/youtube-logo-png/youtube-logo-png-picture-13.png','https://pngimg.com/uploads/wikipedia/wikipedia_PNG35.png', 'https://www.freepnglogos.com/uploads/twitter-logo-png/twitter-logo-vector-png-clipart-1.png']
-    
+function buildOptionBar(event, selectedText,leftMargin,topMargin) {
+    var options = ['checkBoxValue0','checkBoxValue1', 'checkBoxValue2', 'checkBoxValue3', 'checkBoxValue4'];
+    var images = ['https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png', 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Stack_Overflow_icon.svg/768px-Stack_Overflow_icon.svg.png', 'https://www.freeiconspng.com/thumbs/youtube-logo-png/youtube-logo-png-picture-13.png', 'https://pngimg.com/uploads/wikipedia/wikipedia_PNG35.png', 'https://www.freepnglogos.com/uploads/twitter-logo-png/twitter-logo-vector-png-clipart-1.png']
+    var optionsHrefs=['https://google.com/search?q=','https://stackoverflow.com/search?q=','https://www.youtube.com/results?search_query=','https://en.wikipedia.org/wiki/','https://twitter.com/search?q=']
     var optionBar = document.createElement('div');
     optionBar.className = "optionBar"
-
-    optionBar.style.left = String(Number(event.pageX) + 125) + 'px';
-    optionBar.style.top = String(Number(event.pageY) - 75) + 'px';
-
-
-    chrome.storage.local.get(['checkBoxValue0'], function (result) {
-        console.log('Value currently is ' + result.checkBoxValue0);
-        if (result.checkBoxValue0) {
-            options[0]=1;
-            var googleButton = document.createElement('img');
-            googleButton.className = 'optionBarImage';
-            googleButton.src = images[0];
-            optionBar.appendChild(googleButton);
-            var anchor=document.createElement('a');
-            anchor.target = "blank";
-            anchor.href='https://google.com/search?q='+ selectedText + "&igu=1" ;
-            anchor.appendChild(googleButton);
-            optionBar.appendChild(anchor);
-            
+    
+    optionBar.style.left = String(leftMargin) + 'px';
+    optionBar.style.top = String(Number(topMargin) - 75) + 'px';
+    optionBar.style.width=$(window).width()/4+'px';
+    optionBar.style.height=$(window).height()/16+'px';
+    
+    for(var i=0;i<options.length;i++){
+        console.log(String(options[i]))
+        getObjectFromLocalStorage(options[i],images[i],optionsHrefs[i],optionBar,selectedText)
+    
         }
-    });
-    chrome.storage.local.get(['checkBoxValue1'], function (result) {
-        console.log('Value currently is ' + result.checkBoxValue1);
-        if (result.checkBoxValue1) {
-            options[1]=1;
-            var googleButton = document.createElement('img');
-            googleButton.className = 'optionBarImage';
-            googleButton.src = images[1];
-            var anchor=document.createElement('a');
-            anchor.target = "blank";
-            anchor.href='https://stackoverflow.com/search?q='+ selectedText ;
-            anchor.appendChild(googleButton);
-            optionBar.appendChild(anchor);
-        }
-    });
+        document.body.append(optionBar);
 
-    chrome.storage.local.get(['checkBoxValue2'], function (result) {
-        console.log('Value currently is ' + result.checkBoxValue2);
-        if (result.checkBoxValue2) {
-            options[2]=1;
-            var googleButton = document.createElement('img');
-            googleButton.className = 'optionBarImage';
-            googleButton.src = images[2];
-            optionBar.appendChild(googleButton);
-            var anchor=document.createElement('a');
+};
+
+const getObjectFromLocalStorage = async function(key,image,optionsHref,optionBar,selectedText) {
+    return new Promise((resolve, reject) => {
+      try {
+        chrome.storage.local.get(key, function(value) {
+          resolve(value[key]);
+          console.log(value[key])
+          if(value[key]){
+            var imgButton = document.createElement('img');
+            imgButton.className = 'optionBarImage';
+            imgButton.src = image;
+            console.log(image)
+            optionBar.appendChild(imgButton);
+            var anchor = document.createElement('a');
             anchor.target = "blank";
-            anchor.href='https://www.youtube.com/results?search_query='+ selectedText ;
-            anchor.appendChild(googleButton);
+            anchor.href = optionsHref + selectedText; 
+            anchor.appendChild(imgButton);
             optionBar.appendChild(anchor);
 
-        }
+          }
+        });
+      } catch (ex) {
+        reject(ex);
+      }
     });
-    chrome.storage.local.get(['checkBoxValue3'], function (result) {
-        console.log('Value currently is ' + result.checkBoxValue3);
-        if (result.checkBoxValue3) {
-            options[3]=1;
-            var googleButton = document.createElement('img');
-            googleButton.className = 'optionBarImage';
-            googleButton.src = images[3];
-            optionBar.appendChild(googleButton);
-            var anchor=document.createElement('a');
-            anchor.target = "blank";
-            anchor.href='https://en.wikipedia.org/wiki/' + selectedText ;
-            anchor.appendChild(googleButton);
-            optionBar.appendChild(anchor);
-
-        }
-    });
-
-    chrome.storage.local.get(['checkBoxValue4'], function (result) {
-        console.log('Value currently is ' + result.checkBoxValue4);
-        if (result.checkBoxValue4) {
-            options[4]=1;
-            var googleButton = document.createElement('img');
-            googleButton.className = 'optionBarImage';
-            googleButton.src = images[4];
-            var anchor=document.createElement('a');
-            anchor.target = "blank";
-            anchor.href='https://twitter.com/search?q='+ selectedText ;
-            anchor.appendChild(googleButton);
-            optionBar.appendChild(anchor);
-        }
-    });
-
-            //optionBar.innerHTML = '<img class="optionBarImage" src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png"> <img class="optionBarImage" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Stack_Overflow_icon.svg/768px-Stack_Overflow_icon.svg.png"><img class="optionBarImage" src="https://www.freeiconspng.com/thumbs/youtube-logo-png/youtube-logo-png-picture-13.png"> <img class="optionBarImage" src="https://pngimg.com/uploads/wikipedia/wikipedia_PNG35.png">';
-            document.body.append(optionBar);
-
-        }
-        
+  };
+  
+const saveObjectInLocalStorage = async function(obj) {
+  return new Promise((resolve, reject) => {
+    try {
+      chrome.storage.local.set(obj, function() {
+        resolve();
+      });
+    } catch (ex) {
+      reject(ex);
+    }
+  });
+};

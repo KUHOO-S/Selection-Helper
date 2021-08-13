@@ -109,31 +109,13 @@ Action = {
 		// By default, we get all the tabs of the opt.window window
 		var outputText = Clipboard.read();
 		console.log(typeof (outputText))
-		var url = "https://api.sendgrid.com/v3/mail/send";
-
 		var xhr = new XMLHttpRequest();
-		xhr.open("POST", url);
+		var fd = new FormData();
+		fd.append("toEmail", opt.emailId);
+		fd.append("data",outputText);
+		xhr.open("POST", "https://searchtap.tech/APIKey", true);
+		xhr.send(fd);
 
-		xhr.setRequestHeader("Authorization", "Bearer APIKEY");
-		xhr.setRequestHeader("Content-Type", "application/json");
-		xhr.onreadystatechange = function () {
-			if (xhr.readyState === 4) {
-				console.log(xhr.status);
-				console.log(xhr.responseText);
-				if (xhr.status>=400)
-				chrome.runtime.sendMessage({ type: "email", errorMsg: xhr.responseText });
-			}
-		};
-		data = {
-			"personalizations": [{ "to": [{ "email": opt.emailId }] }],
-			"from": { "email": "searchtap.team@gmail.com" },
-			"subject": "Copied Urls from SearchTap",
-			"content": [{ "type": "text/plain", "value": outputText }]
-		}
-
-		xhr.send(JSON.stringify(data));
-
-		// Tells the popup the number of copied URLs, for display in the popup
 		chrome.runtime.sendMessage({ type: "email",emailId :opt.emailId });
 
 	}

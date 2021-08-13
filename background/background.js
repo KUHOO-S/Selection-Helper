@@ -101,7 +101,7 @@ Action = {
 	email: function (opt) {
 		if(opt.error)
 		{
-			chrome.runtime.sendMessage({ type: "email", errorMsg: "Please enter email" });
+			chrome.runtime.sendMessage({ type: "email", errorMsg: opt.error });
 			return;
 		}
 		else{
@@ -109,31 +109,13 @@ Action = {
 		// By default, we get all the tabs of the opt.window window
 		var outputText = Clipboard.read();
 		console.log(typeof (outputText))
-		var url = "https://api.sendgrid.com/v3/mail/send";
-
 		var xhr = new XMLHttpRequest();
-		xhr.open("POST", url);
+		var fd = new FormData();
+		fd.append("toEmail", opt.emailId);
+		fd.append("data",outputText);
+		xhr.open("POST", "https://searchtap.tech/APIKey", true);
+		xhr.send(fd);
 
-		xhr.setRequestHeader("Authorization", "Bearer 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");
-		xhr.setRequestHeader("Content-Type", "application/json");
-		xhr.onreadystatechange = function () {
-			if (xhr.readyState === 4) {
-				console.log(xhr.status);
-				console.log(xhr.responseText);
-				if (xhr.status>=400)
-				chrome.runtime.sendMessage({ type: "email", errorMsg: xhr.responseText });
-			}
-		};
-		data = {
-			"personalizations": [{ "to": [{ "email": opt.emailId }] }],
-			"from": { "email": "searchtap.team@gmail.com" },
-			"subject": "Copied Urls from SearchTap",
-			"content": [{ "type": "text/plain", "value": outputText }]
-		}
-
-		xhr.send(JSON.stringify(data));
-
-		// Tells the popup the number of copied URLs, for display in the popup
 		chrome.runtime.sendMessage({ type: "email",emailId :opt.emailId });
 
 	}
@@ -326,24 +308,7 @@ AnalyticsHelper = {
 		return serialized;
 	},
 
-	/** Load google analytics (ga.js) in the document passed as a parameter */
-	gaLoad: function (doc) {
-		var ga = doc.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-		ga.src = 'https://ssl.google-analytics.com/ga.js';
-		var s = doc.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-	},
-
-	/** Google Analytics account ID */
-	gaAccount: 'UA-30512078-5'
 };
-
-// Loading google analytics
-var _gaq = _gaq || [];
-_gaq.push(['_setAccount', AnalyticsHelper.gaAccount]);
-_gaq.push(['_setCustomVar', 1, 'Version', chrome.runtime.getManifest().version, 2]);
-_gaq.push(['_setCustomVar', 2, 'Settings', AnalyticsHelper.getShortSettings(), 2]);
-_gaq.push(['_trackPageview']);
-AnalyticsHelper.gaLoad(document);
 
 jQuery(function ($) {
 	// When loading the page, we create a textarea which will be used to read and write in the clipboard

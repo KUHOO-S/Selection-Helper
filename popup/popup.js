@@ -33,7 +33,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 				return;
 			}
 			else {
-				jQuery('#message').removeClass('error').html("Email sent successfully to "+request.emailId);
+				jQuery('#message').removeClass('error').html("Email sent successfully to " + request.emailId);
 			}
 			//setTimeout(function () { window.close(); }, 3000); // Closing of the popup a few seconds after displaying the message
 			break;
@@ -72,8 +72,20 @@ jQuery(function ($) {
 		bkg.Action.paste({ gaEvent: gaEvent });
 	});
 	$('#actionEmail').on('click', function (e, fromDefaultAction) {
-		console.log($("#email").val())
-		if ($("#email").val()==""){
+		var emailId = $("#email").val()
+		var emailRegEx = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+		if (emailId == "") {
+			chrome.windows.getCurrent(function (win) {
+				bkg.Action.email({ window: win, gaEvent: gaEvent, error: "Please enter email" });
+			});
+		}
+		else if (!emailId.match(emailRegEx)) {
+			chrome.windows.getCurrent(function (win) {
+				bkg.Action.email({ window: win, gaEvent: gaEvent, error: "Please enter a valid email address" });
+			});
+		}
+		else {
 			var gaEvent = {
 				action: 'Email',
 				label: (fromDefaultAction === true) ? 'BrowserAction' : 'Popup',
@@ -81,21 +93,9 @@ jQuery(function ($) {
 			};
 			// We get the current window
 			chrome.windows.getCurrent(function (win) {
-				bkg.Action.email({ window: win, gaEvent: gaEvent,error:"Please enter email" });
-			});	
-		}	
-		else{
-			var emailId=$("#email").val()
-		var gaEvent = {
-			action: 'Email',
-			label: (fromDefaultAction === true) ? 'BrowserAction' : 'Popup',
-			actionMeta: bkg.AnalyticsHelper.getActionMeta("email")
-		};
-		// We get the current window
-		chrome.windows.getCurrent(function (win) {
-			bkg.Action.email({ window: win, gaEvent: gaEvent,emailId:emailId });
-		});
-	}
+				bkg.Action.email({ window: win, gaEvent: gaEvent, emailId: emailId });
+			});
+		}
 	});
 });
 
@@ -105,7 +105,7 @@ function storeSwitch() {
 	var switchState2 = document.getElementById("checkbox2").checked;
 	var switchState3 = document.getElementById("checkbox3").checked;
 	var switchState4 = document.getElementById("checkbox4").checked;
-	console.log(switchState0,switchState1, switchState2, switchState3, switchState4)
+	console.log(switchState0, switchState1, switchState2, switchState3, switchState4)
 
 	chrome.storage.local.set({ checkBoxValue0: switchState0 }, function () {
 		chrome.storage.local.get(['checkBoxValue0'], function (result) {
@@ -141,10 +141,10 @@ document.addEventListener("DOMContentLoaded", function () {
 		console.log('Value currently is ' + result.checkBoxValue0);
 		var setVal = result.checkBoxValue0;
 		if (result.checkBoxValue0 === undefined) {
-			setVal=true;
+			setVal = true;
 			chrome.storage.local.set({ checkBoxValue0: true }, function () {
 				console.log(true);
-				
+
 			});
 		}
 		document.getElementById('checkbox0').checked = setVal;
@@ -154,10 +154,10 @@ document.addEventListener("DOMContentLoaded", function () {
 		console.log('Value currently is ' + result.checkBoxValue1);
 		var setVal = result.checkBoxValue1;
 		if (result.checkBoxValue1 === undefined) {
-			setVal=true;
+			setVal = true;
 			chrome.storage.local.set({ checkBoxValue1: true }, function () {
 				console.log(true);
-				
+
 			});
 		}
 		document.getElementById('checkbox1').checked = setVal;
@@ -167,10 +167,10 @@ document.addEventListener("DOMContentLoaded", function () {
 		console.log('Value currently is ' + result.checkBoxValue2);
 		var setVal = result.checkBoxValue2;
 		if (result.checkBoxValue2 === undefined) {
-			setVal=true;
+			setVal = true;
 			chrome.storage.local.set({ checkBoxValue2: true }, function () {
 				console.log(true);
-				
+
 			});
 		}
 		document.getElementById('checkbox2').checked = setVal;
@@ -180,10 +180,10 @@ document.addEventListener("DOMContentLoaded", function () {
 		console.log('Value currently is ' + result.checkBoxValue3);
 		var setVal = result.checkBoxValue3;
 		if (result.checkBoxValue3 === undefined) {
-			setVal=true;
+			setVal = true;
 			chrome.storage.local.set({ checkBoxValue3: true }, function () {
 				console.log(true);
-				
+
 			});
 		}
 		document.getElementById('checkbox3').checked = setVal;
@@ -194,10 +194,10 @@ document.addEventListener("DOMContentLoaded", function () {
 		console.log('Value currently is ' + result.checkBoxValue4);
 		var setVal = result.checkBoxValue4;
 		if (result.checkBoxValue4 === undefined) {
-			setVal=true;
+			setVal = true;
 			chrome.storage.local.set({ checkBoxValue4: true }, function () {
 				console.log(true);
-				
+
 			});
 		}
 		document.getElementById('checkbox4').checked = setVal;

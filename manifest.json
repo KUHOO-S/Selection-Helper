@@ -37,6 +37,8 @@
 				"*://*/*"
 			],
 			"js": [
+				"popup/vendor/jquery-1.7.2_min.js",
+				"popup/vendor/encoder.js",
 				"content/content.js"
 			],
 			"css": [

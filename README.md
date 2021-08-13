@@ -51,6 +51,8 @@ git clone https://github.com/KUHOO-S/Selection-Helper.git
 4. Refresh the extension and all tabs which might be currently open in your web browser
 5. Pin the extension on the top left corner for accessing pop-up functionalities
 
+![image](https://user-images.githubusercontent.com/45617530/129410775-262c39e5-e191-4696-b7f8-bf4aa6a65b1f.png)
+
 ### Features
 Selection Tap is a context search based extension, that eases the developer's work by adding some quick featues
 1. SEARCHING

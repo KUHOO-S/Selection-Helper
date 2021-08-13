@@ -4,11 +4,13 @@
 <head>
   <meta charset="UTF-8">
   <link href="{{ url_for('static',filename='css/style.css') }}" rel="stylesheet">
+  <link rel="icon" type="image/png" href="../static/img/logo.png"/>
   <title>Search Tap</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css"
     integrity="sha384-wESLQ85D6gbsF459vf1CiZ2+rr+CsxRY0RpiF1tLlQpDnAgg6rwdsUF1+Ics2bni" crossorigin="anonymous">
@@ -18,6 +20,7 @@
   <div class="container-fluid">
     <div class="tm-site-header tm-mb-1 tm-bg-color-8">
       <img height="200px" src="../static/img/logo.png">
+      <div><h1>SEARCH TAP</h1></div>
       <div class="tm-nav-container tm-bg-color-8">
         <nav class="tm-nav" id="tm-nav">
           <ul>
@@ -44,17 +47,15 @@
         </div>
         <article class="tm-section-1-r tm-bg-color-8">
           <h2 class="tm-mb-2 tm-title-color">SearchTap</h2>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis, sequi earum. Exercitationem
-            culpa debitis harum nisi voluptate fugit eius voluptatibus, at assumenda reprehenderit vero
-            voluptas maxime ad architecto itaque corrupti.</p>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis, sequi earum. Exercitationem
-            culpa debitis harum nisi voluptate fugit eius voluptatibus, at assumenda reprehenderit vero
-            voluptas maxime ad architecto itaque corrupti.</p>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis, sequi earum. Exercitationem
-            culpa debitis harum nisi voluptate fugit eius voluptatibus, at assumenda reprehenderit vero
-            voluptas maxime ad architecto itaque corrupti.</p>
-          <a href="https://github.com/KUHOO-S/Selection-Helper/archive/refs/heads/main.zip"
-            class="tm-btn tm-btn-1 tm-link-to-tech">DOWNLOAD</a>
+          <p>
+          <ul><li>Go to <a href="chrome://extensions/">chrome://extensions/</a></li><br>
+            <li>Enable developer mode on the top right and click "Load Unpacked"</li><br>
+            <li>Upload the folder and Refresh the extension and all tabs which might be currently open in your web browser</li><br>
+            <li>Pin the extension on the top left corner for accessing pop-up functionalities</li><br>
+          </ul>
+        </p>
+            <a href="https://github.com/KUHOO-S/Selection-Helper/archive/refs/heads/main.zip"
+              class="tm-btn tm-btn-1 tm-link-to-tech">DOWNLOAD</a>
         </article>
       </div>
     </section>
@@ -86,12 +87,13 @@
     </div>
     <div class="tm-mb-4 text-center tm-social-s">
       <a href="https://github.com/KUHOO-S/Selection-Helper" class="tm-social-link"><i
-          class="fab fa-github tm-social-icon"></i></a>
+          class="fab fa-github" style="
+          font-size: xxx-large;"></i></a>
     </div>
     <footer class="text-center tm-mb-1">
       <p>Made with &hearts; by @Team SearchTap
     </footer>
-  </div> 
+  </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://imagesloaded.desandro.com/imagesloaded.pkgd.min.js"></script>
   <script src="../static/js/jquery.singlePageNav.min.js"></script>

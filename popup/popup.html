@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <title>Search Tap</title>
+  <script type="text/javascript" src="vendor/jquery-1.7.2_min.js"></script>
+</head>
+
+<body>
+
+  <div class="tabs" style="width: 300px; height: 510px;">
+    <div>
+      <img src="../../assets/images/logo.png" style="width:12%; float: left; padding-bottom: 2px;"></img>
+      <!-- <i class="fa fa-hand-pointer-o" style="font-size:20px; float: left;"></i>  -->
+      <span style="font-size: large; float: center;">&nbsp SEARCH TAP </span>
+    </div>
+    <br>
+    <hr>
+    <div class="tab-header">
+      <div class="active">
+        <i class="fa fa-home" style="font-size:24px;"></i>
+      </div>
+      <div>
+        <i class="fa fa-laptop" style="font-size:24px;"></i>
+      </div>
+      <div>
+        <i class="fa fa-link" style="font-size:24px;"></i>
+      </div>
+
+    </div>
+
+    <div class="tab-indicator"></div>
+    <div class="tab-body">
+      <div class="active">
+        <!-- <h2>This is services section</h2> -->
+        <h2>Welcome!</h2>
+        <!-- <h3 style="font-size: medium; padding:10px; color: rgb(93, 93, 100); font-size: 20px;"><i
+            class="fa fa-user circle"></i> &nbsp Welcome!</h3> -->
+        <img src="../assets/images/banner.png" style="height: 300px; width: 300px; margin-top: 10px;"></img>
+      </div>
+
+      <div>
+        <h2>Search On</h2>
+
+        <!-- <div style="height: 60px; width: 300; background-color: rgb(241, 236, 236); "> -->
+
+        <h3 style="font-size: medium; padding:10px; color: rgb(93, 93, 100); font-size: 20px;"><i
+            class="fa fa-google"></i> &nbsp Google
+          &nbsp &nbsp &nbsp &nbsp
+          <label class="switch" style="float: right;">
+            <input type="checkbox" id="checkbox0" checked>
+            <span class="slider round"></span>
+          </label>
+        </h3>
+
+
+        <h3 style="font-size: medium; padding:10px; color: rgb(93, 93, 100); font-size: 20px;"><i
+            class="fa fa-stack-overflow"></i> &nbsp Stackover
+          &nbsp &nbsp &nbsp &nbsp
+          <label class="switch" style="float: right;">
+            <input type="checkbox" id="checkbox1" checked>
+            <span class="slider round"></span>
+          </label>
+        </h3>
+
+        <h3 style="font-size: medium; padding:10px; color: rgb(93, 93, 100); font-size: 20px;"><i
+            class="fa fa-youtube-play"></i> &nbsp Youtube
+          &nbsp &nbsp &nbsp &nbsp
+          <label class="switch" style="float: right;">
+            <input type="checkbox" id="checkbox2" checked>
+            <span class="slider round"></span>
+          </label>
+        </h3>
+
+        <h3 style="font-size: medium; padding:10px; color: rgb(93, 93, 100); font-size: 20px;"><i
+            class="fa fa-wikipedia-w"></i> &nbsp Wikipedia
+          &nbsp &nbsp &nbsp &nbsp
+          <label class="switch" style="float: right;">
+            <input type="checkbox" id="checkbox3" checked>
+            <span class="slider round"></span>
+          </label>
+        </h3>
+
+        <h3 style="font-size: medium; padding:10px; color: rgb(93, 93, 100); font-size: 20px;"><i
+            class="fa fa-twitter"></i> &nbsp Twitter
+          &nbsp &nbsp &nbsp &nbsp
+          <label class="switch" style="float: right;">
+            <input type="checkbox" id="checkbox4" checked>
+            <span class="slider round"></span>
+          </label>
+        </h3>
+
+      </div>
+
+      <div>
+        <h2>Links</h2>
+        <ul>
+          <li id="actionCopy">
+            <div class="menu" style="font-size: medium; padding:10px; color: rgb(93, 93, 100); font-size: 20px;">
+              <i class="fa fa-bookmark"></i>
+              <span class="text"> &nbsp Copy</span>
+            </div>
+          </li>
+          <li id="actionPaste">
+            <div class="menu" style="font-size: medium; padding:10px; color: rgb(93, 93, 100); font-size: 20px;">
+              <i class="fa fa-clipboard"></i>
+              <span class="text"> &nbsp Paste</span>
+            </div>
+          </li>
+          <li id="actionEmail">
+            <div class="menu"
+              style="font-size: medium; padding-bottom: 2px; padding-left: 10px; padding-right: 10; padding-top: 10px; color: rgb(93, 93, 100); font-size: 20px;">
+              <i class="fa fa-envelope"></i>
+              <span class="text"> &nbsp Email</span>
+            </div>
+            <br>
+            <span class="text" style="padding-left: 10px; "> Press the Copy button before emailing!! &nbsp</span>
+
+            <div id="actionEnter">
+              <div class="menu"
+                style="font-size: medium; padding-bottom: 10px; padding-left: 10px; padding-right: 10; padding-top:2px; color: rgb(93, 93, 100); font-size: 20px;">
+                <input type="email" id="email" placeholder="xyz@email.com">
+              </div>
+            </div>
+          </li>
+        </ul>
+        <div id="message"></div>
+        <div id="recently-updated"
+          style="font-size: medium; padding:10px; color: rgb(93, 93, 100); font-size: 20px; display:none;"></div>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+<script src="popup.js"></script>
+
+</html>
